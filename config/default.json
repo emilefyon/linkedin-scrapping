@@ -1,0 +1,11 @@
+{
+	"Credentials": {
+		"email": "****gmail.com",
+		"password": "****"
+	},
+	"Parameters": {
+		"nbPage": 10,
+		"outputFile": "listing.json",
+		"searchString": "digital"
+	}
+} 
