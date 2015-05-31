@@ -6,7 +6,7 @@
 	"Parameters": {
 		"nbPage": 2,
 		"outputFile": "data/listing.json",
-		"searchString": "it"
+		"searchString": "nodejs"
 	},
 	"Database": {
 		"db": "linkedin-scrapping",

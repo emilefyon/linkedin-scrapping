@@ -22,19 +22,16 @@ var credentials = config.get("Credentials");
 var param = config.get("Parameters");
 
 
-// Sign-in to LinkedIn
-nav.loggin(driver);
-
-// Go on search page
-nav.searchKeyword(driver, param.searchString);
-
-// Scrap results
-parser.scrapPages(driver, param.nbPage).then(function(res) {
-	console.log(res);
-	// Write to file
-	exportToFile(res);
-	db.saveResults(res);
-});
+// Do the work
+nav.loggin(driver)
+	.then(nav.searchKeyword.bind(nav, driver, param.searchString))
+	.then(parser.scrapPages.bind(parser, driver, param.nbPage))
+	.then(function(res) {
+		console.log(res);
+		// Write to file
+		exportToFile(res);
+		db.saveResults(res);
+	});
 
 
 function exportToFile(res, callback) {

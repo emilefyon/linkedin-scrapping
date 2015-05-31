@@ -26,12 +26,14 @@ var param = config.get("Parameters");
 var profiles = JSON.parse(fs.readFileSync(param.outputFile, 'utf8'));
 
 // Sign-in to LinkedIn
-nav.loggin(driver);
-
-// Don't know why I can't chain them. Any idea ?
-visitList(profiles.results).then(function(nbVisited) {
+nav.loggin(driver).then(visitList.bind(null, profiles.results)).then(function(nbVisited) {
 	console.log(nbVisited + " profiles visited");
 });
+
+// Don't know why I can't chain them. Any idea ?
+// visitList(profiles.results).then(function(nbVisited) {
+// 	console.log(nbVisited + " profiles visited");
+// });
 
 
 function visitList(list, nbVisited) {
