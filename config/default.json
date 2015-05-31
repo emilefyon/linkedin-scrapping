@@ -4,8 +4,12 @@
 		"password": "****"
 	},
 	"Parameters": {
-		"nbPage": 10,
-		"outputFile": "listing.json",
-		"searchString": "digital"
+		"nbPage": 2,
+		"outputFile": "data/listing.json",
+		"searchString": "it"
+	},
+	"Database": {
+		"db": "linkedin-scrapping",
+		"usersCollection": "users"
 	}
 } 
