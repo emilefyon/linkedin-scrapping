@@ -10,31 +10,39 @@ Based on node.js.
 
 Import repository and run 
 
-> npm install
+```
+npm install
+```
 
 to import dependencies.
 
 Add new file in *config/* folder (for instance *development.json*) with your crendentials
 
-> {
-> 	"Credentials": {
->		"email": "your email",
->		"password": "your linkedin password"
->	}
-> } 
+```js
+{
+	"Credentials": {
+		"email": "your email",
+		"password": "your linkedin password"
+	}
+} 
+```
 
 Update your search term and number of pages you want to look for:
 
->	{
->		"Parameters": {
->			"nbPage": 2,
->			"searchString": "nodejs"
->		}
->	} 
+```
+{
+	"Parameters": {
+		"nbPage": 2,
+		"searchString": "nodejs"
+	}
+} 
+```
 
 Then run the execution files: 
 
-> node linkedin-profile-listing.js
-> node linkedin-profile-visit.js
+```
+node linkedin-profile-listing.js
+node linkedin-profile-visit.js
+```
 
 Enjoy
