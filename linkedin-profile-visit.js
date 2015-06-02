@@ -21,24 +21,29 @@ var nav = require('./lib/navigation.js');
 // Get configuration
 var credentials = config.get("Credentials");
 var param = config.get("Parameters");
+var db = require('./lib/db-mysql.js');
+
 
 // Load listing of profiles
-var profiles = JSON.parse(fs.readFileSync(param.outputFile, 'utf8'));
+nav.loggin(driver).then(function() {
+	return db.getProfiles().then(function(items) {
+		return visitList(items).then(function(nbVisited) {
+			console.log(nbVisited + " profiles visited");
+		});
+	});
 
-// Sign-in to LinkedIn
-nav.loggin(driver).then(visitList.bind(null, profiles.results)).then(function(nbVisited) {
-	console.log(nbVisited + " profiles visited");
+}).then(null, function(reason) {
+	console.error(reason);
 });
 
-// Don't know why I can't chain them. Any idea ?
-// visitList(profiles.results).then(function(nbVisited) {
-// 	console.log(nbVisited + " profiles visited");
-// });
 
 
 function visitList(list, nbVisited) {
 	list = list.slice();
-	return nav.visitProfile(driver, list.pop()).then(null, function() {
+	var el = list.pop();
+	return nav.visitProfile(driver, el).then(function() {
+		return db.updateProfileVisitTimestamp(el.userId);
+	}, function() {
 		return false;
 	}).then(function(succeded) {
 		if (list.length) 

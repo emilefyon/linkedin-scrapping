@@ -8,6 +8,8 @@ Based on node.js.
 
 ## Installation
 
+Set-up your database and run the mysql > schema.sql file.
+
 Import repository and run 
 
 ```

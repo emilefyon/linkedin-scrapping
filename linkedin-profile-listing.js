@@ -15,7 +15,7 @@ var driver = new webdriver.Builder()
 // App libraries
 var nav = require('./lib/navigation.js');
 var parser = require('./lib/parser.js');
-var db = require('./lib/db.js');
+var db = require('./lib/db-mysql.js');
 
 // Get configuration
 var credentials = config.get("Credentials");
@@ -27,10 +27,9 @@ nav.loggin(driver)
 	.then(nav.searchKeyword.bind(nav, driver, param.searchString))
 	.then(parser.scrapPages.bind(parser, driver, param.nbPage))
 	.then(function(res) {
-		console.log(res);
-		// Write to file
-		exportToFile(res);
-		db.saveResults(res);
+		db.saveResults(res, param.searchString);
+		db.disconnect();
+		driver.close();
 	});
 
 

@@ -6,10 +6,13 @@
 	"Parameters": {
 		"nbPage": 2,
 		"outputFile": "data/listing.json",
-		"searchString": "nodejs"
+		"searchString": "digital"
 	},
 	"Database": {
-		"db": "linkedin-scrapping",
-		"usersCollection": "users"
+		"host": "localhost",
+		"database": "prod",
+		"table": "prod.profiles",
+		"user": "scrapper",
+		"password": ""
 	}
 } 
